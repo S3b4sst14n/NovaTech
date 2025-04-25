@@ -1,0 +1,342 @@
+/* =================== Estilos Globales =================== */
+html {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: none;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+/* =================== Header =================== */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    min-height: 60px;
+}
+
+/* =================== Navegación =================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+    margin-left: 20px;
+}
+
+ul.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+ul.menu li a {
+    text-decoration: none;
+    color: #ffffffb5;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+ul.menu li a:hover {
+    background-color: #444;
+}
+
+/* =================== Login Buttons =================== */
+.login-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-buttons button {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.login-buttons button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+/* =================== Menú hamburguesa =================== */
+.menu-toggle {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle div {
+    width: 30px;
+    height: 4px;
+    background-color: #fff;
+    margin: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open div:nth-child(1) {
+    transform: translate(0, 10px) rotate(-45deg);
+}
+
+.menu-toggle.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open div:nth-child(3) {
+    transform: translate(0, -10px) rotate(45deg);
+}
+
+
+/* =================== Sección Principal =================== */
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    text-align: center;
+}
+
+.home h1 {
+    font-size: 70px;
+    color: #101010;
+}
+
+.slogan {
+    font-size: 35px;
+    color: #3d3d3dbb;
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    background-color: #b9b9b9;
+    color: #000;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+/* =================== Opiniones =================== */
+.opinions-title {
+    text-align: start;
+    padding: 20px;
+    font-size: 24px;
+    color: #2d2d2d;
+    margin-top: 40px;
+    margin-bottom: 0; 
+}
+
+.opinions-description {
+    text-align: start;
+    padding: 0 20px 20px 20px; 
+    font-size: 20px;
+    color: #555;
+}
+
+
+.opinions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+
+.opinion {
+    min-width: 200px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.opinion img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.opinion h2 {
+    font-size: 18px;
+    color: #2d2d2d;
+    margin-bottom: 5px;
+}
+
+.opinion h4 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.opinion p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* =================== Footer =================== */
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    padding: 30px;
+    width: 100%;
+    flex-wrap: wrap; 
+    padding: 20px 10%;
+    gap: 20px;
+}
+
+footer a, .about{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #000000;
+    background-color: #666;
+}
+
+footer h2 {
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.social-media .icons a {
+    margin-right: 10px;
+    color: #fff;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+.about ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about ul li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* =================== Media Queries =================== */
+@media (max-width: 768px) {
+    
+    nav {
+        flex-direction: row;
+        align-items: space-between;
+    }
+
+    .menu {
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 2s ease-in-out;
+    }
+
+    .menu.show {
+        max-height: max-content;
+    }
+
+    .menu li {
+        padding: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .login-buttons {
+        flex-direction: column;
+        align-items: space-between;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .login-buttons button {
+        width: 80%;
+        text-align: center;
+    }
+
+    .home h1{
+        font-size: 50px;
+    }
+
+    .slogan {
+        font-size: 20px;
+        margin: 15px;
+    }
+
+    .buttons button {
+        font-size: 15px;
+    }
+
+    .opinions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .menu {
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .opinions {
+        grid-template-columns: 1fr;
+    }
+}
