@@ -112,7 +112,11 @@ ul.menu li a:hover {
 
 
 /* =================== Sección Principal =================== */
+
+
+
 .home {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -131,6 +135,12 @@ ul.menu li a:hover {
     color: #3d3d3dbb;
     margin-top: 10px;
 }
+
+#log{
+    background-color: #343434;
+    color: #fff;
+}
+
 
 .buttons {
     margin-top: 20px;
