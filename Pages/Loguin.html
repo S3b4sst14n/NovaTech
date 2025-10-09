@@ -1,86 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Css/loguin.css">
-  <script src="/Js/script.js" defer></script>
-  <title>Info</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form | Novatech</title>
+    <link rel="stylesheet" href="/Css/loguin.css">
 </head>
+
 <body>
-  <header class="banner">
-      <nav>
-          <a href="#" class="logo"><img src="/Img/Logo.webp" alt="Logo NovaTech"></a>
-          <div class="menu-toggle" id="menu-toggle">
-              <div></div>
-              <div></div>
-              <div></div>
-          </div>
-          
-          <ul class="menu">
-              <li><a href="#">Tienda</a></li>
-              <li><a href="#">Soluciones</a></li>
-              <li><a href="#">Comunidad</a></li>
-              <li><a href="#">Contacto</a></li>
-              <li><a href="#">Ofertas</a></li>
-              <li class="login-buttons">
-                  <button>Regístrate</button>
-                  <button>Iniciar sesión</button>
-              </li>
-          </ul>
-      </nav>
-  </header>
-
-    <!-- Sección principal -->
-
-  <section class="Log-in">
-    <form>
-        <h2>Iniciar sesion</h2>
-        <label for="User">Usuario</label>
-        <input type="text">
-        <label for="Pass">Contraseña</label>
-        <input type="password">
-        <input type="submit" value="Iniciar sesión">
-        <button type="submit">Registrate</button>
-    </form>
-  </section>
-
-  <section class="Register">
-    <h2>Registrate</h2>
-    <label for="text">Nombre</label>
-    <input type="text">
-    <label for="text">Apellido</label>
-    <input type="text">
-    <label for="gmail">Gmail</label>
-    <input type="gmail">
-    <label for="password">Password</label>
-    <input type="password">
-  </section>
-
-   <!-- Footer -->
-    <footer>
-        <section class="social-media">
-            <h2>Redes Sociales</h2>
-            <div class="icons">
-                <a href="https://github.com/S3b4sst14n"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/juan-17a528293/"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/iam_juann_/"><i class="fa-brands fa-square-instagram"></i></a>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-blob">
+                <img src="/Img/login/blob.svg" alt="blob" class="blob-img blob--img1">
+                <img src="/Img/login/blob.svg" alt="blob" class="blob-img blob--img2">
+                <img src="/Img/login/blob.svg" alt="blob" class="blob-img blob--img3">
             </div>
-        </section>
-    
-        <section class="about">
-            <h2>Sobre nosotros</h2>
-            <ul>
-                <li><a href="#">Informacion</a></li>
-                <li><a href="#">Contactos</a></li>
-                <li><a href="#">Comunidad</a></li>
-                <li><a href="#">Garantía</a></li>
-                <li><a href="#">Envíos y devoluciones</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Team Collaboration</a></li>
-            </ul>
-        </section>
-    </footer>
+            <div class="form-header">
+                <p>Please enter your details</p>
+                <h1>Welcome back!</h1>
+            </div>
+            <form class="form-box">
+                <div class="input-group">
+                    <input type="email" id="Email" class="input-field" placeholder="" required>
+                    <label for="email" class="floating-label">Correo</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" class="input-field" placeholder="" required>
+                    <label for="password" class="floating-label">Contraseña</label>
+                    <div class="eye-icon" onclick="togglePassword()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-eye-icon lucide-eye">
+                            <path
+                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="input-group checkbox-group">
+                    <div class="form-col remenber-me">
+                        <input type="checkbox" id="remenber-me-checkbox" class="checkbox-field">
+                        <label for="remenber-me-checkbox">Recuerdame</label>
+                    </div>
+                    <div class="form-col">
+                        <a href="#" class="form-link">¿Olvidaste la contraseña?</a>
+                    </div>
+                </div>
+                <button type="submit" class="form-btn form-btn--submit">Iniciar sesión</button>
+            </form>
+            <div class="form-divider">
+                <p>O</p>
+            </div>
+            <div class="form-bottom">
+                <div class="form-socials">
+                    <button class="form-btn form-btn--social">
+                        <img src="/Img/login/Google.svg" class="btn-icon" alt="social icon">
+                    </button>
+                    <button class="form-btn form-btn--social">
+                        <img src="/Img/login/Facebook.svg" class="btn-icon" alt="social icon">
+                    </button>
+                    <button class="form-btn form-btn--social">
+                        <img src="/Img/login/apple.svg" class="btn-icon" alt="social icon">
+                    </button>
+                </div>
+                <p>¿No tienes una cuenta? <a href="#" class="form-link">Registrate</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.querySelector('.eye-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>`;
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`;
+            }
+        }
+    </script>
 
 </body>
+
 </html>
