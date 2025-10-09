@@ -1,27 +1,8 @@
-/* =================== Variables Globales =================== */
-:root {
-    --font-main: 'Poppins', sans-serif;
-
-    /* Colores base */
-    --color-bg: #f4f4f4;
-    --color-text: #101010;
-    --color-muted: #3d3d3dbb;
-    --color-primary: #000;
-    --color-secondary: #343434;
-    --color-light: #b9b9b9;
-    --color-border: #ccc;
-    --color-hover: #222;
-    --color-white: #fff;
-}
-
 /* =================== Estilos Globales =================== */
 html {
     box-sizing: border-box;
-    font-family: var(--font-main);
+    font-family: 'Poppins', sans-serif;
     scrollbar-width: none;
-}
-html::-webkit-scrollbar {
-    display: none;
 }
 
 *, *::before, *::after {
@@ -31,15 +12,13 @@ html::-webkit-scrollbar {
 }
 
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    scroll-behavior: smooth;
+    background-color: #f4f4f4;
 }
 
 /* =================== Header =================== */
 header {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: #000;
+    color: #fff;
     padding: 15px 0;
     text-align: center;
     min-height: 60px;
@@ -58,11 +37,6 @@ nav {
     width: 50px;
     height: auto;
     margin-left: 20px;
-    transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: scale(1.1);
 }
 
 ul.menu {
@@ -78,58 +52,39 @@ ul.menu li a {
     font-size: 15px;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 ul.menu li a:hover {
-    background-color: var(--color-hover);
-    color: var(--color-white);
+    background-color: #444;
 }
 
-/* =================== Botones Base =================== */
-.btn,
-.login-buttons button,
-.buttons button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px 15px;
+/* =================== Login Buttons =================== */
+.login-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-buttons button {
+    text-decoration: none;
+    color: #000;
     font-size: 15px;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Hover animado */
-.btn:hover,
-.login-buttons button:hover,
-.buttons button:hover {
-    transform: scale(1.05);
-}
-
-/* =================== Variantes =================== */
-.btn-light,
-.login-buttons button:not(#log),
-.buttons button {
-    background-color: var(--color-light);
-    color: var(--color-text);
-}
-
-.btn-dark,
-#log {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
-}
-
-.btn-dark:hover,
-.btn-light:hover,
-#log:hover,
-.login-buttons button:hover,
-.buttons button:hover {
-    background-color: var(--color-hover);
-    color: var(--color-white);
+.login-buttons button:hover {
+    background-color: #444;
+    color: #fff;
 }
 
 /* =================== Menú hamburguesa =================== */
 .menu-toggle {
+    position: relative;
     display: none;
     flex-direction: column;
     cursor: pointer;
@@ -138,47 +93,70 @@ ul.menu li a:hover {
 .menu-toggle div {
     width: 30px;
     height: 4px;
-    background-color: var(--color-white);
+    background-color: #fff;
     margin: 3px;
-    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 .menu-toggle.open div:nth-child(1) {
-    transform: translateY(10px) rotate(-45deg);
+    transform: translate(0, 10px) rotate(-45deg);
 }
+
 .menu-toggle.open div:nth-child(2) {
     opacity: 0;
 }
+
 .menu-toggle.open div:nth-child(3) {
-    transform: translateY(-10px) rotate(45deg);
+    transform: translate(0, -10px) rotate(45deg);
 }
 
+
 /* =================== Sección Principal =================== */
+
 .home {
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 75vh;
     text-align: center;
 }
 
 .home h1 {
     font-size: 70px;
-    color: var(--color-text);
-    animation: fadeInDown 0.8s ease;
+    color: #101010;
 }
 
 .slogan {
     font-size: 35px;
-    color: var(--color-muted);
+    color: #3d3d3dbb;
     margin-top: 10px;
-    animation: fadeInUp 1s ease;
 }
+
+#log{
+    background-color: #343434;
+    color: #fff;
+}
+
 
 .buttons {
     margin-top: 20px;
+}
+
+.buttons button {
+    background-color: #b9b9b9;
+    color: #000;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #444;
+    color: #fff;
 }
 
 /* =================== Opiniones =================== */
@@ -186,8 +164,9 @@ ul.menu li a:hover {
     text-align: start;
     padding: 20px;
     font-size: 24px;
-    color: var(--color-text);
+    color: #2d2d2d;
     margin-top: 40px;
+    margin-bottom: 0; 
 }
 
 .opinions-description {
@@ -197,6 +176,7 @@ ul.menu li a:hover {
     color: #555;
 }
 
+
 .opinions {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -205,19 +185,15 @@ ul.menu li a:hover {
     padding: 20px;
 }
 
+
 .opinion {
+    min-width: 200px;
     text-align: center;
     padding: 15px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-    background-color: var(--color-white);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.opinion:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .opinion img {
@@ -230,12 +206,14 @@ ul.menu li a:hover {
 
 .opinion h2 {
     font-size: 18px;
-    color: var(--color-text);
+    color: #2d2d2d;
+    margin-bottom: 5px;
 }
 
 .opinion h4 {
     font-size: 16px;
     color: #555;
+    margin-bottom: 5px;
 }
 
 .opinion p {
@@ -246,73 +224,84 @@ ul.menu li a:hover {
 /* =================== Footer =================== */
 footer {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    padding: 30px 10%;
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    padding: 30px;
+    width: 100%;
+    flex-wrap: wrap; 
+    padding: 20px 10%;
     gap: 20px;
 }
 
-footer a {
-    color: var(--color-white);
+footer a, .about{
+    color: #ffffff;
     text-decoration: none;
 }
 
 footer a:hover {
+    color: #000000;
     background-color: #666;
-    color: var(--color-text);
 }
 
 footer h2 {
     font-size: 15px;
     margin-bottom: 15px;
+    text-decoration: none;
 }
 
 .social-media .icons a {
     margin-right: 10px;
+    color: #fff;
     font-size: 24px;
     transition: transform 0.3s ease;
 }
 
 .social-media .icons a:hover {
     transform: scale(1.2);
+    color: #ffffff;
 }
 
 .about ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* =================== Animaciones =================== */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.about ul li {
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
 /* =================== Media Queries =================== */
 @media (max-width: 768px) {
+    
     nav {
         flex-direction: row;
+        align-items: space-between;
     }
 
     .menu {
         flex-direction: column;
-        background-color: var(--color-primary);
+        background-color: #000;
         position: absolute;
         top: 58px;
         left: 0;
         width: 100%;
-        max-height: 0;
+        text-align: center;
         overflow: hidden;
-        transition: max-height 0.4s ease;
+        max-height: 0;
+        transition: max-height 2s ease-in-out;
     }
 
     .menu.show {
-        max-height: 400px;
+        max-height: max-content;
+    }
+
+    .menu li {
+        padding: 10px 0;
     }
 
     .menu-toggle {
@@ -321,15 +310,17 @@ footer h2 {
 
     .login-buttons {
         flex-direction: column;
+        align-items: space-between;
         width: 100%;
         padding: 10px 0;
     }
 
     .login-buttons button {
         width: 80%;
+        text-align: center;
     }
 
-    .home h1 {
+    .home h1{
         font-size: 50px;
     }
 
@@ -338,22 +329,22 @@ footer h2 {
         margin: 15px;
     }
 
+    .buttons button {
+        font-size: 15px;
+    }
+
     .opinions {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .logo img {
-        width: 35px;
+    .menu {
+        align-items: center;
+        padding: 10px 0;
     }
 
     .opinions {
         grid-template-columns: 1fr;
-    }
-
-    footer {
-        flex-direction: column;
-        align-items: flex-start;
     }
 }
