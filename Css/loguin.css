@@ -277,3 +277,14 @@ body{
         padding: 60px 30px;
     }
 }
+
+.form-box {
+  display: none;
+}
+
+.form-box.active {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+}

@@ -18,9 +18,10 @@
             </div>
             <div class="form-header">
                 <p>Please enter your details</p>
-                <h1>Welcome back!</h1>
+                <h1>¡Bienvenido!</h1>
             </div>
-            <form class="form-box">
+            <!-- LOGIN -->
+            <form id="loginForm" class="form-box active"> 
                 <div class="input-group">
                     <input type="email" id="Email" class="input-field" placeholder="" required>
                     <label for="email" class="floating-label">Correo</label>
@@ -48,41 +49,87 @@
                     </div>
                 </div>
                 <button type="submit" class="form-btn form-btn--submit">Iniciar sesión</button>
-            </form>
-            <div class="form-divider">
-                <p>O</p>
-            </div>
-            <div class="form-bottom">
-                <div class="form-socials">
-                    <button class="form-btn form-btn--social">
-                        <img src="/Img/login/Google.svg" class="btn-icon" alt="social icon">
-                    </button>
-                    <button class="form-btn form-btn--social">
-                        <img src="/Img/login/Facebook.svg" class="btn-icon" alt="social icon">
-                    </button>
-                    <button class="form-btn form-btn--social">
-                        <img src="/Img/login/apple.svg" class="btn-icon" alt="social icon">
-                    </button>
+
+                <div class="form-divider">
+                    <p>O</p>
                 </div>
-                <p>¿No tienes una cuenta? <a href="#" class="form-link">Registrate</a></p>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.querySelector('.eye-icon');
+                <div class="form-bottom">
+                    <div class="form-socials">
+                        <button class="form-btn form-btn--social">
+                            <img src="/Img/login/Google.svg" class="btn-icon" alt="social icon">
+                        </button>
+                        <button class="form-btn form-btn--social">
+                            <img src="/Img/login/Facebook.svg" class="btn-icon" alt="social icon">
+                        </button>
+                        <button class="form-btn form-btn--social">
+                            <img src="/Img/login/apple.svg" class="btn-icon" alt="social icon">
+                        </button>
+                    </div>
+                    <p>¿No tienes una cuenta?
+                        <a href="#" class="form-link" onclick="showSignup()">Regístrate</a>
+                    </p>
+                </div>
+            </form>
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>`;
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`;
-            }
-        }
-    </script>
+            <!-- REGISTRO -->
+            <form id="signupForm" class="form-box">
+                <div class="input-group">
+                    <input type="text" id="username" class="input-field" placeholder="" required>
+                    <label for="username" class="floating-label">Nombre</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="signupEmail" class="input-field" placeholder="" required>
+                    <label for="signupEmail" class="floating-label">Correo electronico</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" class="input-field" placeholder="" required>
+                    <label for="signupPassword" class="floating-label">Contraseña</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" class="input-field" placeholder="" required>
+                    <label for="signupPassword" class="floating-label">Confirmar contraseña</label>
+                </div>
+                <div class="input-group checkbox-group">
+                    <div class="form-col remenber-me">
+                        <input type="checkbox" id="remenber-me-checkbox" class="checkbox-field">
+                        <label for="remenber-me-checkbox">Aceptar términos y condiciones</label>
+                    </div>
+                </div>
+                <button type="submit" class="form-btn form-btn--submit">Crear cuenta</button>
+                <div class="form-bottom">
+                    <p>¿Ya tienes cuenta?
+                        <a href="#" class="form-link" onclick="showLogin()">Inicia sesión</a>
+                    </p>
+                </div>
+            </form>
+
+
+            <script>
+                function togglePassword() {
+                    const passwordInput = document.getElementById('password');
+                    const eyeIcon = document.querySelector('.eye-icon');
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>`;
+                    } else {
+                        passwordInput.type = 'password';
+                        eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`;
+                    }
+                }
+
+                function showSignup() {
+                    document.getElementById('loginForm').classList.remove('active');
+                    document.getElementById('signupForm').classList.add('active');
+                }
+
+                function showLogin() {
+                    document.getElementById('signupForm').classList.remove('active');
+                    document.getElementById('loginForm').classList.add('active');
+                }
+
+            </script>
 
 </body>
 
