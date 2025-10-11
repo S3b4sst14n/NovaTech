@@ -181,7 +181,6 @@ body{
     gap: 10px;
     font-size: 14px;
     color: var(--color-placeholder);
-    margin-top: 20px;
 }
 
 .form-divider::before,
