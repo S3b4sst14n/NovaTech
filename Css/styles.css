@@ -234,7 +234,7 @@ footer {
   flex-direction: row;
   justify-content: space-around;
   background-color: #000;
-  color: #fff;
+  color: #00ff00;
   text-align: left;
   padding: 30px;
   width: 100%;
@@ -250,8 +250,7 @@ footer a,
 }
 
 footer a:hover {
-  color: #000000;
-  background-color: #666;
+  color: #00ff00;
 }
 
 footer h2 {
@@ -262,7 +261,7 @@ footer h2 {
 
 .social-media .icons a {
   margin-right: 10px;
-  color: #fff;
+  color: #00ff00;
   font-size: 24px;
   transition: transform 0.3s ease;
 }

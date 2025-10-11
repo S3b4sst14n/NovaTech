@@ -1,0 +1,169 @@
+/* =================== Estilos Globales =================== */
+html {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scrollbar-width: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+/* =================== Header =================== */
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+  min-height: 60px;
+}
+
+/* =================== Navegación =================== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-left: 20px;
+}
+
+ul.menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+ul.menu li a {
+  text-decoration: none;
+  color: #ffffffb5;
+  font-size: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+ul.menu li a:hover {
+  background-color: #444;
+}
+
+/* =================== Login Buttons =================== */
+.login-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-buttons button {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.login-buttons button:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+/* =================== Menú hamburguesa =================== */
+.menu-toggle {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle div {
+  width: 30px;
+  height: 4px;
+  background-color: #fff;
+  margin: 3px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.open div:nth-child(1) {
+  transform: translate(0, 10px) rotate(-45deg);
+}
+
+.menu-toggle.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open div:nth-child(3) {
+  transform: translate(0, -10px) rotate(45deg);
+}
+  
+/* =================== Footer =================== */
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  padding: 30px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 20px 10%;
+  gap: 20px;
+}
+
+footer a,
+.about {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #000000;
+  background-color: #666;
+}
+
+footer h2 {
+  font-size: 15px;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.social-media .icons a {
+  margin-right: 10px;
+  color: #fff;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.social-media .icons a:hover {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+.about ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about ul li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
