@@ -1,0 +1,231 @@
+/* general*/
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fondos de cada sección */
+.premium-section {
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.ofertas-section {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-section {
+  background: linear-gradient(135deg, #141414, #202020);
+}
+
+/* brillo en el fondo */
+.ofertas-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+  animation: shimmer 8s infinite linear;
+  z-index: 0;
+}
+
+/* ofertas*/
+.ofertas-section h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #00ff6e;
+  position: relative;
+  z-index: 1;
+}
+
+.ofertas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* tarjetas */
+.oferta-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oferta-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #00ff6e;
+  transition: width 0.3s ease;
+}
+
+.oferta-item:hover::after {
+  width: 100%;
+}
+
+.oferta-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 255, 55, 0.25);
+}
+
+
+/* contenido */
+.oferta-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.oferta-item h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.oferta-item p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* seccion premium */
+.premium-section h1 {
+  font-size: 2.8rem;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.premium-subtitle {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 60px;
+}
+
+.premium-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* tarjeta premium */
+.premium-card {
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 40px 30px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.premium-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.premium-card h3 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.premium-card h3 span {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.premium-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px;
+}
+
+.premium-card ul li {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* botón */
+.premium-card button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.premium-card button:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+
+/* Plan destacado */
+.destacado {
+  background: linear-gradient(135deg, #ffd700, #ffb300);
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
+
+.destacado h2,
+.destacado h3,
+.destacado ul li {
+  color: #000;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .premium-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .premium-card {
+    width: 90%;
+  }
+}
