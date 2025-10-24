@@ -1,13 +1,13 @@
 
-// Menu Hamburguesa //
-const menuToggle = document.getElementById("menu-toggle");
-const menu = document.querySelector(".menu");
+function initMenu() {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.querySelector(".menu");
 
-menuToggle.addEventListener("click", () => {
-  menu.classList.toggle("show");
-  menuToggle.classList.toggle("open");
-});
-
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("show");
+    menuToggle.classList.toggle("open");
+  });
+}
 
 // Form submission using EmailJS //
 document.addEventListener("DOMContentLoaded", () => {

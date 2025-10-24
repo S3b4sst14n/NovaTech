@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
 }
 
 /* =================== Header =================== */
@@ -33,7 +33,6 @@ nav {
   align-items: center;
   padding: 10px 20px;
   position: relative;
-  z-index: 1000;
 }
 
 .logo img {
@@ -112,14 +111,14 @@ ul.menu li a:hover {
 .menu-toggle.open div:nth-child(3) {
   transform: translate(0, -10px) rotate(45deg);
 }
-  
+
 /* =================== Footer =================== */
 footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   background-color: #000;
-  color: #fff;
+  color: #00ff00;
   text-align: left;
   padding: 30px;
   width: 100%;
@@ -135,8 +134,7 @@ footer a,
 }
 
 footer a:hover {
-  color: #000000;
-  background-color: #666;
+  color: #00ff00;
 }
 
 footer h2 {
@@ -147,7 +145,7 @@ footer h2 {
 
 .social-media .icons a {
   margin-right: 10px;
-  color: #fff;
+  color: #00ff00;
   font-size: 24px;
   transition: transform 0.3s ease;
 }
@@ -166,4 +164,49 @@ footer h2 {
 .about ul li {
   font-size: 14px;
   margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    align-items: space-between;
+  }
+
+  .menu {
+    flex-direction: column;
+    background-color: #000;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 2s ease-in-out;
+    z-index: 1;
+  }
+
+  .menu.show {
+    max-height: max-content;
+  }
+
+  .menu li {
+    padding: 10px 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    align-items: space-between;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .login-buttons button {
+    width: 80%;
+    text-align: center;
+  }
 }
