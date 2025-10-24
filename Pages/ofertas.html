@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,31 +12,79 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header></header>
     <section class="ofertas-section">
         <h1>Ofertas Especiales</h1>
         <div class="ofertas-container">
             <div class="oferta-item">
-                <img src="/Img/oferta1.webp" alt="Oferta 1">
-                <h2>Descuento del 20% en todos los productos</h2>
+                <img src="/Img/Info/Ofertas 1.jpg" alt="Oferta 1">
+                <h2>Descuento del 10% en todos los productos</h2>
                 <p>Aprovecha nuestro descuento especial por tiempo limitado.</p>
             </div>
             <div class="oferta-item">
-                <img src="/Img/oferta2.webp" alt="Oferta 2">
+                <img src="/Img/Info/Envios 1.jpg" alt="Oferta 2">
                 <h2>Envío gratis en compras superiores a $50</h2>
                 <p>Compra más y ahorra en costos de envío.</p>
             </div>
             <div class="oferta-item">
-                <img src="/Img/oferta3.webp" alt="Oferta 3">
-                <h2>Compra uno y lleva otro al 50% de descuento</h2>
+                <img src="/Img/Info/Servicio 1.jpg" alt="Oferta 3">
+                <h2>Compra uno y lleva otro al 30% de descuento</h2>
                 <p>Perfecto para compartir con amigos y familiares.</p>
             </div>
         </div>
+    </section>
+
+    <section class="premium-section">
+        <h1>Planes Exclusivos</h1>
+        <p class="premium-subtitle">Hazte miembro y disfruta beneficios únicos</p>
+
+        <div class="premium-container">
+            <div class="premium-card">
+                <h2>NovaTech Premium</h2>
+                <h3>$10 <span>/ mes</span></h3>
+                <ul>
+                    <li>🚚 Envío gratis</li>
+                    <li>⚡ Descuentos fugaces</li>
+                </ul>
+                <button>Comprar</button>
+            </div>
+
+            <div class="premium-card destacado">
+                <h2>NovaTech Premium+</h2>
+                <h3>$18 <span>/ mes</span></h3>
+                <ul>
+                    <li>🌍 Envío gratis internacional</li>
+                    <li>💸 Descuentos fugaces</li>
+                    <li>🕐 Soporte 24/7</li>
+                    <li>🛡️ Garantía extendida</li>
+                    <li>🔥 Descuentos hasta 50%</li>
+                    <li>⭐ Exclusiva de productos</li>
+                </ul>
+                <button>Comprar</button>
+            </div>
+        </div>
+    </section>
+
 
     <footer></footer>
-
     <script src="/Js/include.js"></script>
     <script src="/Js/script.js" defer></script>
+    <script>
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+
 </body>
+
 </html>

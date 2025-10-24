@@ -57,6 +57,16 @@ body{
     font-size: 32px;
 }
 
+.form-header button{
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: var(--color-link);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+
 .form-box{
     display: flex;
     flex-direction: column;

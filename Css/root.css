@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
 }
 
 /* =================== Header =================== */
@@ -62,27 +62,38 @@ ul.menu li a:hover {
 }
 
 /* =================== Login Buttons =================== */
-.login-buttons {
+.login-button {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.login-buttons button {
+.login-button .btn {
+  display: inline-flex; /* para alinear icono + texto */
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
-  color: #000;
+  color: hsl(0, 0%, 0%);
   font-size: 15px;
   padding: 10px 15px;
   border-radius: 5px;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
+  background-color: #fff;
 }
 
-.login-buttons button:hover {
+/* Hover */
+.login-button .btn:hover {
   background-color: #444;
   color: #fff;
 }
+
+/* Ícono */
+.login-button .btn i {
+  font-size: 18px;
+}
+
 
 /* =================== Menú hamburguesa =================== */
 .menu-toggle {

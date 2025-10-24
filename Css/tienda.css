@@ -1,17 +1,22 @@
+/* =================== CONTENEDOR PRINCIPAL =================== */
 .container {
   display: flex;
   gap: 30px;
   padding: 20px;
   border: none;
   align-items: flex-start;
+  flex-wrap: wrap; /* se adapta en pantallas pequeñas */
+  color: #fff;
 }
 
+/* =================== FILTROS =================== */
 .filters {
   width: 250px;
-  border: 1px solid #f4f4f4;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   padding: 20px;
   width: fit-content;
+  background: transparent; /* fondo transparente */
 }
 
 .tags {
@@ -22,26 +27,30 @@
 }
 
 .tag {
-  background: #f4f4f4;
+  background: rgba(255, 255, 255, 0.15); /* sutil transparencia */
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 14px;
+  color: #fff;
 }
 
+/* =================== SECCIONES =================== */
 .section {
   margin-bottom: 20px;
 }
 
 .desc {
-  color: gray;
+  color: #ccc;
   font-size: 12px;
   margin: 0;
 }
 
+/* =================== CATÁLOGO =================== */
 .catalogo {
   flex: 1;
 }
 
+/* =================== BARRA DE BÚSQUEDA =================== */
 .search-bar {
   display: flex;
   align-items: center;
@@ -53,47 +62,111 @@
   flex: 1;
   padding: 8px;
   border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.sort-buttons button {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  background: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.sort-buttons .active {
-  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent; /* fondo transparente */
   color: #fff;
 }
 
+.search-bar input::placeholder {
+  color: #ccc;
+}
+
+/* =================== BOTONES DE ORDEN =================== */
+.sort-buttons button {
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.sort-buttons button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sort-buttons .active {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =================== CUADRÍCULA =================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
+/* =================== ITEMS =================== */
 .item {
   text-align: start;
-  border: 1px solid #e5e5e5;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 10px;
+  background: transparent; /* fondo transparente */
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* =================== IMÁGENES =================== */
 .item img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  background: transparent;
+  transition: transform 0.6s ease;
 }
 
 .item img:hover {
   transform: scale(1.05);
-  transition: transform 0.6s ease;
 }
 
+/* =================== TEXTOS =================== */
 .item h4 {
   margin: 10px 0 5px 0;
-  font-weight: blod;
+  font-weight: bold;
+  color: #fff;
+}
+
+.item p {
+  color: #ccc;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* filtros arriba */
+    align-items: center;
+  }
+
+  .filters {
+    width: 90%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    width: 100%;
+    text-align: center;
+  }
 }
