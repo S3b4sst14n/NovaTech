@@ -37,3 +37,55 @@ window.addEventListener("load", () => {
         registerSection.style.display = "none";
     }
 });
+
+// login.js (solo la parte de submit)
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+  const pass = document.getElementById("signupPassword").value.trim();
+
+  try {
+    const res = await fetch('http://localhost:4000/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password: pass })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message || 'Error creando cuenta');
+
+    alert('Cuenta creada, inicia sesión');
+    showLogin();
+  } catch (err) {
+    console.error(err);
+    alert('Error de conexión con el servidor');
+  }
+});
+
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const email = document.getElementById("Email").value.trim();
+  const pass = document.getElementById("password").value.trim();
+
+  try {
+    const res = await fetch('http://localhost:4000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: pass })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message || 'Error iniciando sesión');
+
+    // Guardar token y user
+    localStorage.setItem('novatech_token', data.token);
+    localStorage.setItem('novatech_user', JSON.stringify(data.user));
+
+    alert('Inicio de sesión exitoso');
+    window.location.href = '/index.html'; // o la ruta que uses
+  } catch (err) {
+    console.error(err);
+    alert('Error de conexión con el servidor');
+  }
+});

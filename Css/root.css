@@ -49,6 +49,9 @@ ul.menu {
 }
 
 ul.menu li a {
+  display: flex;          
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
   color: #ffffffb5;
   font-size: 15px;
@@ -56,6 +59,7 @@ ul.menu li a {
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
 
 ul.menu li a:hover {
   background-color: #444;
@@ -73,14 +77,14 @@ ul.menu li a:hover {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: hsl(0, 0%, 0%);
+  color: #00ff00;
   font-size: 15px;
   padding: 10px 15px;
   border-radius: 5px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
-  background-color: #fff;
+  background-color: #404040;
 }
 
 /* Hover */
@@ -121,6 +125,91 @@ ul.menu li a:hover {
 
 .menu-toggle.open div:nth-child(3) {
   transform: translate(0, -10px) rotate(45deg);
+}
+
+/* =================== Opiniones =================== */
+.opinions-section {
+  min-height: 60vh;
+  color: #fff;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.opinions-title {
+  text-align: start;
+  padding: 20px;
+  font-size: 2.2rem;
+  color: #00ff6e;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.opinions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.opinion {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.opinion:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 255, 55, 0.25);
+}
+
+.opinion::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.opinion img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid rgba(0, 255, 55, 0.5);
+}
+
+.opinion h2 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.opinion h4 {
+  font-size: 0.95rem;
+  color: #00ff6e;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.opinion p {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.5;
 }
 
 /* =================== Footer =================== */

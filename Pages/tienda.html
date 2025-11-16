@@ -11,135 +11,210 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/Js/include.js"></script>
+    <script src="/Js/script.js" defer></script>
 </head>
 
 <body>
     <header></header>
 
     <div class="container">
+
         <!-- Barra de filtros -->
-        <div class="filters">
+        <aside class="filters">
             <h2>Filtros</h2>
+
+            <!-- Filtro por categoría -->
             <div class="section">
-                <label>Keywords</label>
-                <div class="tags">
-                    <span class="tag">Spring ✕</span>
-                    <span class="tag">Smart ✕</span>
-                    <span class="tag">Modern ✕</span>
+                <label>Categorías</label>
+                <div id="categoryFilters">
                 </div>
             </div>
 
-            <div class="section">
-                <label>Características</label>
-                <div>
-                    <input type="checkbox" id="ram" checked>
-                    <label for="ram"><strong>RAM</strong><br><span class="desc">Description</span></label><br>
-
-                    <input type="checkbox" id="almacenamiento" checked>
-                    <label for="almacenamiento"><strong>Almacenamiento</strong><br><span
-                            class="desc">Description</span></label><br>
-
-                    <input type="checkbox" id="procesador" checked>
-                    <label for="procesador"><strong>Procesador</strong><br><span class="desc">Description</span></label>
-                </div>
-            </div>
-
+            <!-- Rango de precio -->
             <div class="section">
                 <label>Rango de precio</label>
                 <div class="price-range">
-                    <span>$0 - $999</span>
-                    <input type="range" min="0" max="999" step="1" value="500">
+                    <span id="priceValue">$0 - $1000</span>
+                    <input type="range" min="0" max="1000" step="10" value="1000" id="priceRange">
                 </div>
             </div>
 
-            <div class="section">
-                <label>Color</label><br>
-                <input type="checkbox" id="blanco" checked>
-                <label for="negro">Negro</label><br>
-
-                <input type="checkbox" id="greenred" checked>
-                <label for="greenred">Green/red</label>
-            </div>
-
-            <div class="section">
-                <label>Size</label><br>
-                <input type="checkbox" id="15-6" checked>
-                <label for="15-6">15.6</label><br>
-
-                <input type="checkbox" id="14" checked>
-                <label for="14">14</label><br>
-
-                <input type="checkbox" id="13-5" checked>
-                <label for="13-5">13.5</label>
-            </div>
-        </div>
+        </aside>
 
         <!-- Catálogo -->
         <main class="catalogo">
+
             <div class="search-bar">
-                <input type="text" placeholder="Buscar">
+                <input type="text" id="searchInput" placeholder="Buscar productos">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <div class="sort-buttons">
-                    <button class="active">Nuevo</button>
-                    <button>Precio más alto</button>
-                    <button>Precio más bajo</button>
-                    <button>Rating</button>
-                </div>
+                <i class="fa-solid fa-cart-shopping" id="openCart"></i>
             </div>
 
-            <div class="grid">
-                <div class="item">
-                    <img src="/Img/Catalogo/Victus.svg" alt="HP Victus">
-                    <h4>HP Victus</h4>
-                    <p>Hp</p>
-                    <p>$499</p>
-                </div>
+            <!-- aqui es donde se cargan los productos -->
+            <div class="grid" id="productGrid"></div>
 
-                <div class="item">
-                    <img src="/Img/Catalogo/Acer.svg" alt="Acer Predator">
-                    <h4>Acer Predator</h4>
-                    <p>Acer</p>
-                    <p>$1700</p>
-                </div>
-
-                <div class="item">
-                    <img src="/Img/Catalogo/Victus2.svg" alt="HP Victus">
-                    <h4>HP Victus</h4>
-                    <p>Hp</p>
-                    <p>$600</p>
-                </div>
-
-                <div class="item">
-                    <img src="/Img/Catalogo/Rog.svg" alt="Asus Rog Strix">
-                    <h4>Asus Rog Strix</h4>
-                    <p>Asus</p>
-                    <p>$2000</p>
-                </div>
-
-                <div class="item">
-                    <img src="/Img/Catalogo/Nitro.svg" alt="Acer Nitro 15">
-                    <h4>Acer Nitro 15</h4>
-                    <p>hacer</p>
-                    <p>$499</p>
-                </div>
-
-                <div class="item">
-                    <img src="/Img/Catalogo/Pavilon.svg" alt="HP Pavilion 15">
-                    <h4>HP Pavilion 15</h4>
-                    <p>Hp</p>
-                    <p>$700</p>
-                </div>
-            </div>
         </main>
+
     </div>
+
+    <!-- Modal de carrito -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <h3>Carrito</h3>
+            <div id="cartItems"></div>
+            <p><strong>Total:</strong> $<span id="cartTotal">0</span></p>
+            <button id="closeCart">Cerrar</button>
+        </div>
+    </div>
+
 
     </main>
     </div>
 
     <footer></footer>
 
-    <script src="/Js/include.js"></script>
-    <script src="/Js/script.js" defer></script>
+    <script>
+        // Variables globales
+        let productos = [];
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        // Cargar productos
+        async function cargarProductos() {
+            try {
+                const res = await fetch("https://fakestoreapi.com/products");
+                productos = await res.json();
+                mostrarProductos(productos);
+                cargarCategorias();
+            } catch (e) {
+                console.error("Error cargando productos:", e);
+            }
+        }
+
+        // Mostrar productos en el grid
+        function mostrarProductos(lista) {
+            const grid = document.getElementById("productGrid");
+            grid.innerHTML = "";
+
+            lista.forEach(prod => {
+                const item = document.createElement("div");
+                item.classList.add("item");
+
+                item.innerHTML = `
+                    <img src="${prod.image}" alt="${prod.title}" onclick="verProducto(${prod.id})">
+                    <h4 onclick="verProducto(${prod.id})">${prod.title}</h4>
+                    <p>${prod.category}</p>
+                     <p>$${prod.price}</p>
+                    <button onclick="agregarCarrito(${prod.id})">Agregar</button>
+                `;
+
+                grid.appendChild(item);
+            });
+        }
+
+        // Cargar categorías
+        async function cargarCategorias() {
+            const res = await fetch("https://fakestoreapi.com/products/categories");
+            const categorias = await res.json();
+
+            const cont = document.getElementById("categoryFilters");
+
+            categorias.forEach(cat => {
+                const id = cat.replace(/\s+/g, "-");
+
+                cont.innerHTML += `
+            <div>
+                <input type="checkbox" class="catFilter" id="${id}" value="${cat}" checked>
+                <label for="${id}">${cat}</label>
+            </div>
+        `;
+            });
+
+            document.querySelectorAll(".catFilter").forEach(cb =>
+                cb.addEventListener("change", aplicarFiltros)
+            );
+        }
+
+        // Filtros
+        function aplicarFiltros() {
+            const texto = document.getElementById("searchInput").value.toLowerCase();
+            const precioMax = parseFloat(document.getElementById("priceRange").value);
+
+            const categoriasSeleccionadas = [...document.querySelectorAll(".catFilter:checked")].map(c => c.value);
+
+            const filtrados = productos.filter(p =>
+                p.title.toLowerCase().includes(texto) &&
+                p.price <= precioMax &&
+                categoriasSeleccionadas.includes(p.category)
+            );
+
+            mostrarProductos(filtrados);
+        }
+
+        // Buscador en tiempo real
+        document.getElementById("searchInput").addEventListener("input", aplicarFiltros);
+
+        // Filtro precio dinámico
+        document.getElementById("priceRange").addEventListener("input", () => {
+            const val = document.getElementById("priceRange").value;
+            document.getElementById("priceValue").textContent = `$0 - $${val}`;
+            aplicarFiltros();
+        });
+
+        // Carrito
+        function agregarCarrito(id) {
+            const prod = productos.find(p => p.id === id);
+            const existe = carrito.find(p => p.id === id);
+
+            if (existe) {
+                existe.cantidad++;
+            } else {
+                carrito.push({ ...prod, cantidad: 1 });
+            }
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            actualizarCarritoUI();
+        }
+
+        function verProducto(id) {
+            window.location.href = `product.html?id=${id}`;
+        }
+
+        // Mostrar carrito
+        function actualizarCarritoUI() {
+            const cont = document.getElementById("cartItems");
+            const totalUI = document.getElementById("cartTotal");
+
+            cont.innerHTML = "";
+            let total = 0;
+
+            carrito.forEach(item => {
+                total += item.price * item.cantidad;
+
+                cont.innerHTML += `
+            <div class="cart-item">
+                <span>${item.title}</span>
+                <span>x${item.cantidad}</span>
+                <span>$${item.price}</span>
+            </div>
+        `;
+            });
+
+            totalUI.textContent = total.toFixed(2);
+        }
+
+        // Abrir/Cerrar carrito
+        document.getElementById("openCart").addEventListener("click", () => {
+            document.getElementById("cartModal").style.display = "block";
+            actualizarCarritoUI();
+        });
+        document.getElementById("closeCart").addEventListener("click", () => {
+            document.getElementById("cartModal").style.display = "none";
+        });
+
+        cargarProductos();
+        actualizarCarritoUI();
+    </script>
 </body>
 
 </html>

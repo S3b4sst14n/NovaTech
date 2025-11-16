@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto | NovaTech</title>
+
+    <link rel="icon" href="/Img/Logo.webp">
+    <link rel="stylesheet" href="/Css/root.css">
+    <link rel="stylesheet" href="/Css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="/Js/include.js"></script>
+</head>
+
+<body>
+
+    <header></header>
+
+    <div class="product-page">
+        <div class="product-main">
+
+            <!-- Imagen -->
+            <div class="product-image">
+                <img id="prodImage" src="" alt="">
+            </div>
+
+            <!-- Info -->
+            <div class="product-info">
+
+                <h2 id="prodTitle"></h2>
+
+                <!-- Etiqueta de categoría -->
+                <span id="prodCategory" class="tag"></span>
+
+                <h1 class="price" id="prodPrice"></h1>
+
+                <!-- Botón agregar carrito -->
+                <button id="addCartBtn" class="btn-buy">Agregar al carrito</button>
+
+                <div class="description-box">
+                    <h3>Descripción</h3>
+                    <p id="prodDescription"></p>
+                </div>
+
+            </div>
+        </div>
+        <!-- comentarios (fake)-->
+        <<section class="opinions-section">
+            <section class="opinions-section">
+                <h2 class="opinions-title">Opiniones</h2>
+                <div class="opinions">
+                    <!-- Opinión individual -->
+                    <article class="opinion">
+                        <h2>Raquel Rodriguez</h2>
+                        <img src="/Img/User1.png" alt="Foto de Raquel Rodriguez" />
+                        <h4>Macbook Pro M3</h4>
+                        <p>Excelente producto de calidad.</p>
+                    </article>
+
+                    <article class="opinion">
+                        <h2>Sebastian Stan</h2>
+                        <img src="/Img/User0.png" alt="profile photo" srcset="">
+                        <h4>Hp Victus</h4>
+                        <p>Entrega rapida.</p>
+                    </article>
+
+                    <article class="opinion">
+                        <h2>Ana Maria</h2>
+                        <img src="/Img/User1.png" alt="profile photo" srcset="">
+                        <h4>Lenovo Legion</h4>
+                        <p>Buen equipo.</p>
+                    </article>
+
+                    <article class="opinion">
+                        <h2>Jeff Bezos</h2>
+                        <img src="/Img/User0.png" alt="profile photo" srcset="">
+                        <h4>Gforce RTX 4090</h4>
+                        <p>Excelente grafica.</p>
+                    </article>
+
+                    <article class="opinion">
+                        <h2>Daniela Mercado</h2>
+                        <img src="/Img/User1.png" alt="profile photo" srcset="">
+                        <h4>Teclado Corsair</h4>
+                        <p>Muy buen precio.</p>
+                    </article>
+
+                    <article class="opinion">
+                        <h2>Mohamed Lamondá</h2>
+                        <img src="/Img/arabe.png" alt="profile photo" srcset="">
+                        <h4>Escritorio</h4>
+                        <p>Excelente tamaño.</p>
+                    </article>
+                </div>
+            </section>
+    </div>
+
+    <footer></footer>
+
+    <script>
+        // Tomar ID desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        let producto = null;
+
+        // Cargar info del producto desde FakeStore
+        async function cargarProducto() {
+            try {
+                const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+                producto = await res.json();
+
+                document.getElementById("prodImage").src = producto.image;
+                document.getElementById("prodTitle").textContent = producto.title;
+                document.getElementById("prodPrice").textContent = `$${producto.price}`;
+                document.getElementById("prodCategory").textContent = producto.category;
+                document.getElementById("prodDescription").textContent = producto.description;
+
+            } catch (err) {
+                console.error("Error cargando producto:", err);
+            }
+        }
+
+        cargarProducto();
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        function agregarCarrito() {
+
+            const existente = carrito.find(item => item.id === producto.id);
+
+            if (existente) {
+                existente.cantidad++;
+            } else {
+                carrito.push({ ...producto, cantidad: 1 });
+            }
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            alert("Producto agregado al carrito ✔");
+        }
+
+        document.getElementById("addCartBtn")
+            .addEventListener("click", agregarCarrito);
+
+    </script>
+
+</body>
+
+</html>

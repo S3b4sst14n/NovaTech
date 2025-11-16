@@ -1,0 +1,103 @@
+.product-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-main {
+    width: 100%;
+    min-height: 80vh;         /* ocupa casi toda la pantalla */
+    display: flex;
+    justify-content: center;  /* centra horizontal */
+    align-items: center;      /* centra vertical */
+    gap: 40px;
+}
+
+.product-image img {
+    width: 460px;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f7f7f70a;
+    padding: 20px;
+}
+
+.product-info {
+    color: white;
+    width: 100%;
+}
+
+.tag {
+    display: inline-block;
+    background: #D9F5DB;
+    color: #257D34;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.price {
+    color: #ccc;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+.btn-buy {
+    width: 100%;
+    padding: 12px;
+    background: #222;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* Acordeón */
+.description-box {
+    margin-top: 25px;
+    background: #f7f7f70a;
+    border: 1px solid #ffffff1a;
+    border-radius: 12px;
+    padding: 20px;
+    color: #ddd;
+}
+
+.description-box h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.description-box p {
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+
+
+@media (max-width: 992px) {
+    .product-main {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .product-info {
+        text-align: left;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .price {
+        font-size: 28px;
+    }
+
+    .comment-card {
+        width: 100%;
+    }
+}

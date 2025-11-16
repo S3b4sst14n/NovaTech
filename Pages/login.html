@@ -24,14 +24,15 @@
                 <img src="/Img/login/blob.svg" alt="blob" class="blob-img blob--img3">
             </div>
             <div class="form-header">
-                <button type="button" onclick="window.history.back()">< Volver</button>
-                <h1>¡Bienvenido!</h1>
+                <button type="button" onclick="window.history.back()">
+                    < Volver</button>
+                        <h1>¡Bienvenido!</h1>
             </div>
             <!-- LOGIN -->
             <form id="loginForm" class="form-box active">
                 <div class="input-group">
-                    <input type="email" id="Email" class="input-field" placeholder="" required>
-                    <label for="email" class="floating-label">Correo</label>
+                    <input type="text" id="User" class="input-field" placeholder="" required>
+                    <label for="email" class="floating-label">Username</label>
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" class="input-field" placeholder="" required>
@@ -56,64 +57,58 @@
                     </div>
                 </div>
                 <button type="submit" class="form-btn form-btn--submit">Iniciar sesión</button>
-
-                <div class="form-divider">
-                    <p>O</p>
-                </div>
-
-                <div class="form-bottom">
-                    <div class="form-socials">
-                        <button class="form-btn form-btn--social">
-                            <img src="/Img/login/Google.svg" class="btn-icon" alt="social icon">
-                        </button>
-                        <button class="form-btn form-btn--social">
-                            <img src="/Img/login/Facebook.svg" class="btn-icon" alt="social icon">
-                        </button>
-                        <button class="form-btn form-btn--social">
-                            <img src="/Img/login/apple.svg" class="btn-icon" alt="social icon">
-                        </button>
-                    </div>
-                    <p>¿No tienes una cuenta?
-                        <a href="#" class="form-link" onclick="showSignup()">Regístrate</a>
-                    </p>
-                </div>
-            </form>
-
-            <!-- REGISTRO -->
-            <form id="signupForm" class="form-box">
-                <div class="input-group">
-                    <input type="text" id="username" class="input-field" placeholder="" required>
-                    <label for="username" class="floating-label">Nombre</label>
-                </div>
-                <div class="input-group">
-                    <input type="email" id="signupEmail" class="input-field" placeholder="" required>
-                    <label for="signupEmail" class="floating-label">Correo electronico</label>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="signupPassword" class="input-field" placeholder="" required>
-                    <label for="signupPassword" class="floating-label">Contraseña</label>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="signupPassword" class="input-field" placeholder="" required>
-                    <label for="signupPassword" class="floating-label">Confirmar contraseña</label>
-                </div>
-                <div class="input-group checkbox-group">
-                    <div class="form-col remenber-me">
-                        <input type="checkbox" id="remenber-me-checkbox" class="checkbox-field">
-                        <label for="remenber-me-checkbox">Aceptar términos y condiciones</label>
-                    </div>
-                </div>
-                <button type="submit" class="form-btn form-btn--submit">Crear cuenta</button>
-                <div class="form-bottom">
-                    <p>¿Ya tienes cuenta?
-                        <a href="#" class="form-link" onclick="showLogin()">Inicia sesión</a>
-                    </p>
-                </div>
             </form>
         </div>
     </div>
 
     <script src="/Js/login.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById("User").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // Validación básica
+            if (!username || !password) {
+                alert("Falta username o contraseña");
+                return;
+            }
+
+            try {
+                const res = await fetch("https://fakestoreapi.com/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+
+                // Si no responde ok
+                if (!res.ok) {
+                    alert("Usuario o contraseña incorrectos");
+                    return;
+                }
+
+                const data = await res.json();
+
+                // Guarda el token en localStorage
+                localStorage.setItem("token", data.token);
+
+                alert("Login exitoso!");
+
+                // Aquí redirigimos a la pagina de tienda
+                window.location.href = "/Pages/tienda.html";
+
+            } catch (error) {
+                console.error("Error en el login:", error);
+                alert("Hubo un error, intenta luego");
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

@@ -1,48 +1,62 @@
-/* =================== CONTENEDOR PRINCIPAL =================== */
 .container {
   display: flex;
   gap: 30px;
   padding: 20px;
-  border: none;
   align-items: flex-start;
-  flex-wrap: wrap; /* se adapta en pantallas pequeñas */
+  flex-wrap: nowrap;
   color: #fff;
 }
 
 /* =================== FILTROS =================== */
 .filters {
   width: 250px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
   padding: 20px;
-  width: fit-content;
-  background: transparent; /* fondo transparente */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+.filters h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.section label {
+  font-size: 15px;
+  font-weight: 600;
   margin-bottom: 10px;
-}
-
-.tag {
-  background: rgba(255, 255, 255, 0.15); /* sutil transparencia */
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 14px;
   color: #fff;
 }
 
-/* =================== SECCIONES =================== */
-.section {
-  margin-bottom: 20px;
+.price-range input[type="range"] {
+  width: 100%;
 }
 
-.desc {
-  color: #ccc;
-  font-size: 12px;
-  margin: 0;
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tag:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* =================== CATÁLOGO =================== */
@@ -54,119 +68,147 @@
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
 }
 
 .search-bar input {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: transparent; /* fondo transparente */
-  color: #fff;
-}
-
-.search-bar input::placeholder {
-  color: #ccc;
-}
-
-/* =================== BOTONES DE ORDEN =================== */
-.sort-buttons button {
-  padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: none;
+  outline: none;
   background: transparent;
-  border-radius: 8px;
-  cursor: pointer;
   color: #fff;
-  transition: all 0.3s ease;
+  font-size: 16px;
 }
 
-.sort-buttons button:hover {
-  background: rgba(255, 255, 255, 0.1);
+.search-bar i {
+  font-size: 18px;
+  cursor: pointer;
 }
 
-.sort-buttons .active {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* =================== CUADRÍCULA =================== */
+/* =================== GRID =================== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
 }
 
-/* =================== ITEMS =================== */
+/* =================== PRODUCT ITEM =================== */
 .item {
-  text-align: start;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
   padding: 10px;
-  background: transparent; /* fondo transparente */
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
   color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* =================== IMÁGENES =================== */
 .item img {
   width: 100%;
-  height: auto;
+  height: 240px; 
+  object-fit: contain;
   border-radius: 8px;
   background: transparent;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
 
 .item img:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
-/* =================== TEXTOS =================== */
 .item h4 {
-  margin: 10px 0 5px 0;
-  font-weight: bold;
+  margin: 12px 0 6px 0;
+  font-size: 17px;
   color: #fff;
 }
 
 .item p {
   color: #ccc;
+  font-size: 14px;
+}
+
+.item button {
+  margin-top: auto;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #ffffff22;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.item button:hover {
+  background: #ffffff33;
+}
+
+/* =================== MODAL CARRITO =================== */
+.cart-modal {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
 }
 
 /* =================== RESPONSIVE =================== */
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 768px) {
+/* Tablets */
+@media (max-width: 1024px) {
   .container {
-    flex-direction: column; /* filtros arriba */
-    align-items: center;
+    gap: 20px;
   }
 
   .filters {
-    width: 90%;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+    width: 220px;
   }
 }
 
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
+/* celular */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .filters {
     width: 100%;
+    order: -1;
+  }
+
+  .search-bar {
+    margin-top: 10px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .filters h2 {
     text-align: center;
+  }
+
+  .filters {
+    padding: 15px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* una columna */
   }
 }

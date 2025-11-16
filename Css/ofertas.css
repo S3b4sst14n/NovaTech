@@ -1,6 +1,5 @@
 /* general*/
 .section {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +14,7 @@
 
 /* Fondos de cada sección */
 .premium-section {
+  min-height: 100vh;
   background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
   color: #fff;
   text-align: center;
@@ -22,6 +22,7 @@
 }
 
 .ofertas-section {
+  min-height: 100vh;
   background: #000;
   color: #fff;
   text-align: center;
