@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Carritos</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+    <h2>Gestión de Carritos</h2>
+
+    <div id="carts"></div>
+</div>
+
+<script>
+async function loadCarts() {
+    const res = await fetch("https://fakestoreapi.com/carts");
+    const data = await res.json();
+
+    const div = document.getElementById("carts");
+    div.innerHTML = "";
+
+    data.forEach(c => {
+        div.innerHTML += `
+            <div class="cart-card">
+                <h4>Carrito ID: ${c.id}</h4>
+                <p>Usuario: ${c.userId}</p>
+                <p>Fecha: ${c.date}</p>
+                <strong>Productos:</strong>
+                <ul>
+                    ${c.products.map(p => `<li>ID: ${p.productId} — ${p.quantity} und</li>`).join("")}
+                </ul>
+            </div>
+        `;
+    });
+}
+
+loadCarts();
+</script>
+
+</body>
+</html>

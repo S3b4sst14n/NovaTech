@@ -57,19 +57,81 @@
                     </div>
                 </div>
                 <button type="submit" class="form-btn form-btn--submit">Iniciar sesión</button>
+
+                <div class="form-divider">
+                    <p>O</p>
+                </div>
+                <p class="form-link text-center" id="goRegister"> Regístrate</p>
+            </form>
+            <!-- REGISTER -->
+            <form id="registerForm" class="form-box">
+                <div class="input-group">
+                    <input type="text" id="regUsername" class="input-field" required>
+                    <label class="floating-label">Username</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="regEmail" class="input-field" required>
+                    <label class="floating-label">Correo</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="regPassword" class="input-field" required>
+                    <label class="floating-label">Contraseña</label>
+                </div>
+
+                <button type="submit" class="form-btn form-btn--submit">Registrarme</button>
+
+                <p class="form-link text-center" id="goLogin">Ya tengo cuenta</p>
+            </form>
+
             </form>
         </div>
     </div>
 
-    <script src="/Js/login.js"></script>
     <script>
-        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.querySelector('.eye-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>`;
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`;
+            }
+        }
+
+        // Si ya está logueado → mandar a tienda
+        if (localStorage.getItem("token")) {
+            window.location.replace("/Pages/tienda.html");
+        }
+
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const goRegister = document.getElementById("goRegister");
+        const goLogin = document.getElementById("goLogin");
+
+        // Cambiar a registro
+        goRegister?.addEventListener("click", () => {
+            loginForm.classList.remove("active");
+            registerForm.classList.add("active");
+        });
+
+        // Volver a login
+        goLogin?.addEventListener("click", () => {
+            registerForm.classList.remove("active");
+            loginForm.classList.add("active");
+        });
+
+        // LOGIN
+        loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const username = document.getElementById("User").value.trim();
             const password = document.getElementById("password").value.trim();
 
-            // Validación básica
             if (!username || !password) {
                 alert("Falta username o contraseña");
                 return;
@@ -79,13 +141,9 @@
                 const res = await fetch("https://fakestoreapi.com/auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
+                    body: JSON.stringify({ username, password }),
                 });
 
-                // Si no responde ok
                 if (!res.ok) {
                     alert("Usuario o contraseña incorrectos");
                     return;
@@ -93,21 +151,60 @@
 
                 const data = await res.json();
 
-                // Guarda el token en localStorage
                 localStorage.setItem("token", data.token);
 
-                alert("Login exitoso!");
-
-                // Aquí redirigimos a la pagina de tienda
-                window.location.href = "/Pages/tienda.html";
+                window.location.replace("/Pages/tienda.html");
 
             } catch (error) {
                 console.error("Error en el login:", error);
                 alert("Hubo un error, intenta luego");
             }
         });
-    </script>
 
+        // REGISTER
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById("regUsername").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value.trim();
+
+            if (!username || !email || !password) {
+                alert("Todos los campos son obligatorios");
+                return;
+            }
+
+            try {
+                const res = await fetch("https://fakestoreapi.com/users", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        email,
+                        username,
+                        password
+                    })
+                });
+
+                if (!res.ok) {
+                    alert("No se pudo registrar el usuario");
+                    return;
+                }
+
+                alert("Usuario creado con éxito, ahora inicia sesión");
+
+                registerForm.reset();
+
+                // Volver al login automáticamente
+                registerForm.classList.remove("active");
+                loginForm.classList.add("active");
+
+            } catch (error) {
+                console.error("Error registrando:", error);
+                alert("Hubo un error, intenta luego");
+            }
+        });
+
+    </script>
 
 </body>
 

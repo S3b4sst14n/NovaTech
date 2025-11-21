@@ -81,26 +81,6 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.oferta-item::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 4px;
-  background-color: #00ff6e;
-  transition: width 0.3s ease;
-}
-
-.oferta-item:hover::after {
-  width: 100%;
-}
-
-.oferta-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 255, 55, 0.25);
-}
-
 
 /* contenido */
 .oferta-item img {
@@ -125,7 +105,7 @@
 /* seccion premium */
 .premium-section h1 {
   font-size: 2.8rem;
-  color: #ffd700;
+  color: #00ff00;
   margin-bottom: 10px;
 }
 
@@ -145,7 +125,6 @@
 /* tarjeta premium */
 .premium-card {
   background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 40px 30px;
@@ -153,11 +132,6 @@
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.premium-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
 .premium-card h2 {
@@ -201,23 +175,20 @@
 }
 
 .premium-card button:hover {
-  background-color: #ffd700;
+  background-color: #fefefe;
   color: #000;
 }
 
 /* Plan destacado */
 .destacado {
-  background: linear-gradient(135deg, #ffd700, #ffb300);
-  color: #000;
+  background: linear-gradient(135deg, #00ff00 0%, #00b300 50%, #006400 100%);
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
   transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 100, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.destacado h2,
-.destacado h3,
-.destacado ul li {
-  color: #000;
-}
 
 /* responsive */
 @media (max-width: 768px) {

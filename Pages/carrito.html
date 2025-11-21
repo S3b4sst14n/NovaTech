@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaTech</title>
+    <link rel="stylesheet" href="/Css/cart.css" />
+    <link rel="stylesheet" href="/Css/root.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="icon" href="/Img/Logo.webp" type="image/x-icon" />
+    <script src="/Js/script.js" defer></script>
+    <script src="/Js/include.js"></script>
+</head>
+
+
+<body>
+
+    <header></header>
+
+    <div class="cart-container">
+
+        <h2>Tu carrito</h2>
+
+        <!-- Lista de productos -->
+        <div id="cartItems" class="cart-items"></div>
+
+        <!-- Total -->
+        <div class="cart-summary">
+            <h3>Total: <span id="cartTotal">$0</span></h3>
+            <button class="checkout-btn">Finalizar compra</button>
+        </div>
+        <!-- POPUP de confirmación de compra -->
+        <div id="confirmPopup" class="confirm-popup">
+            <div class="popup-content">
+                <h3>¡Compra realizada! 🎉</h3>
+                <p>Tu pedido ha sido confirmado con éxito.</p>
+                <button id="keepBuying" class="btn-primary">Seguir comprando</button>
+                <button id="closePopup" class="btn-primary">Cerrar</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer></footer>
+    <script>
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        // Elementos del DOM
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+
+        // === Renderizar Carrito ===
+        function renderCarrito() {
+            cartItems.innerHTML = "";
+
+            if (carrito.length === 0) {
+                cartItems.innerHTML = "<p>Tu carrito está vacío 🛒</p>";
+                cartTotal.textContent = "$0";
+                return;
+            }
+
+            let total = 0;
+
+            carrito.forEach(item => {
+                total += item.price * item.cantidad;
+
+                const div = document.createElement("div");
+                div.classList.add("cart-item");
+
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <p>$${item.price}</p>
+                    </div>
+
+                    <div class="quantity-control">
+                        <button onclick="cambiarCantidad(${item.id}, -1)">−</button>
+                        <span>${item.cantidad}</span>
+                        <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                    </div>
+
+                    <button class="delete-btn" onclick="eliminarProducto(${item.id})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+
+                cartItems.appendChild(div);
+            });
+
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        renderCarrito();
+
+        // === Cambiar Cantidad ===
+        function cambiarCantidad(id, cambio) {
+            const item = carrito.find(p => p.id === id);
+            if (!item) return;
+
+            item.cantidad += cambio;
+
+            if (item.cantidad <= 0) {
+                carrito = carrito.filter(p => p.id !== id);
+            }
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderCarrito();
+        }
+
+        // === Eliminar producto ===
+        function eliminarProducto(id) {
+            carrito = carrito.filter(item => item.id !== id);
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderCarrito();
+        }
+
+        // Popup de confirmación
+        const checkoutBtn = document.querySelector(".checkout-btn");
+        const confirmPopup = document.getElementById("confirmPopup");
+        const closePopup = document.getElementById("closePopup");
+        const keepBuyingBtn = document.getElementById("keepBuying");
+
+        // Finalizar compra
+        checkoutBtn.addEventListener("click", () => {
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío");
+                return;
+            }
+
+            // Mostrar popup con animación
+            confirmPopup.classList.add("show");
+
+            // Vaciar carrito
+            carrito = [];
+            localStorage.removeItem("carrito");
+
+            renderCarrito();
+        });
+
+        // Cerrar popup
+        closePopup.addEventListener("click", () => {
+            confirmPopup.classList.remove("show");
+        });
+
+        // Seguir comprando → volver al catálogo
+        keepBuyingBtn.addEventListener("click", () => {
+            window.location.href = "/Pages/tienda.html";
+        });
+
+    </script>
+
+</body>
+
+</html>

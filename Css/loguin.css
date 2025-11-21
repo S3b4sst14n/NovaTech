@@ -24,12 +24,6 @@
     font-family: "DM sans", sans-serif;   
 }
 
-body{
-    background-color: var(--color-bg);
-    color: var(--color-text);
-
-}
-
 .container{
     display: flex;
     align-items: center;
@@ -221,7 +215,9 @@ body{
     width: 30px;
 }
 .form-link{
-    color: var(--color-link);
+    color: var(--color-primary);
+    cursor: pointer;
+    background-color: var();
 }
 
 .form-link:hover{

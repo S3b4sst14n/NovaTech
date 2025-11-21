@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Usuarios</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+    <h2>Gestión de Usuarios</h2>
+
+    <div id="users"></div>
+</div>
+
+<script>
+async function loadUsers() {
+    const res = await fetch("https://fakestoreapi.com/users");
+    const data = await res.json();
+
+    const div = document.getElementById("users");
+    div.innerHTML = "";
+
+    data.forEach(u => {
+        div.innerHTML += `
+            <div class="user-card">
+                <h4>${u.name.firstname} ${u.name.lastname}</h4>
+                <p>Email: ${u.email}</p>
+                <p>Ciudad: ${u.address.city}</p>
+            </div>`;
+    });
+}
+
+loadUsers();
+</script>
+
+</body>
+</html>

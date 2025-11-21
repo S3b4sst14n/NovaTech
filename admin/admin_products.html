@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Productos</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+    <h2>Gestión de Productos</h2>
+
+    <!-- Formulario Crear / Editar -->
+    <form id="productForm" class="product-form">
+        <h3 id="formTitle">Crear producto</h3>
+
+        <input type="text" id="title" placeholder="Nombre del producto" required>
+        <input type="number" id="price" placeholder="Precio" required>
+        <input type="text" id="category" placeholder="Categoría" required>
+        <input type="text" id="image" placeholder="URL de imagen" required>
+        <textarea id="description" placeholder="Descripción" required></textarea>
+
+        <button type="submit" class="btn-primary">Guardar</button>
+        <button type="button" id="cancelEdit" class="btn-secondary" style="display:none">Cancelar</button>
+    </form>
+
+    <!-- Lista de productos -->
+    <div id="productList" class="product-list"></div>
+</div>
+
+<script>
+const API = "https://fakestoreapi.com/products";
+let editingId = null;
+
+// Cargar productos
+async function loadProducts() {
+    const res = await fetch(API);
+    const data = await res.json();
+
+    const list = document.getElementById("productList");
+    list.innerHTML = "";
+
+    data.forEach(p => {
+        list.innerHTML += `
+            <div class="product-card">
+                <img src="${p.image}">
+                <h4>${p.title}</h4>
+                <p>$${p.price}</p>
+                <div class="actions">
+                    <button onclick="editProduct(${p.id})">Editar</button>
+                    <button onclick="deleteProduct(${p.id})" class="danger">Eliminar</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Crear o editar
+document.getElementById("productForm").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const product = {
+        title: title.value,
+        price: parseFloat(price.value),
+        description: description.value,
+        image: image.value,
+        category: category.value
+    };
+
+    if (!editingId) {
+        // POST
+        await fetch(API, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(product)
+        });
+        alert("Producto creado!");
+    } else {
+        // PUT
+        await fetch(`${API}/${editingId}`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(product)
+        });
+        alert("Producto actualizado!");
+        editingId = null;
+    }
+
+    e.target.reset();
+    formTitle.textContent = "Crear producto";
+    cancelEdit.style.display = "none";
+
+    loadProducts();
+});
+
+// Editar producto
+async function editProduct(id) {
+    const res = await fetch(`${API}/${id}`);
+    const p = await res.json();
+
+    title.value = p.title;
+    price.value = p.price;
+    category.value = p.category;
+    image.value = p.image;
+    description.value = p.description;
+
+    editingId = id;
+
+    formTitle.textContent = "Editar producto";
+    cancelEdit.style.display = "block";
+}
+
+// Cancelar edición
+cancelEdit.addEventListener("click", () => {
+    productForm.reset();
+    editingId = null;
+    formTitle.textContent = "Crear producto";
+    cancelEdit.style.display = "none";
+});
+
+// Eliminar producto
+async function deleteProduct(id) {
+    if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
+
+    await fetch(`${API}/${id}`, { method: "DELETE" });
+    alert("Producto eliminado");
+    loadProducts();
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
