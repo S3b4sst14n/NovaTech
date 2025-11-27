@@ -31,7 +31,7 @@ function buildDynamicNav() {
       btnInicio.href = "/index.html"; // Usuario no logueado, ir a inicio normal
     }
   }
-
+  
   // Eliminar duplicados si se recarga
   const oldItem = document.querySelector(".dynamic-item");
   if (oldItem) oldItem.remove();

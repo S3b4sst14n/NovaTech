@@ -123,10 +123,11 @@
                     <h4 onclick="verProducto(${prod.id})">${prod.title}</h4>
                     <p>${prod.category}</p>
                     <p>$${prod.price}</p>
-                    <button class="add-btn" onclick="agregarCarrito(${prod.id})">Añadir</button>
+                    <button class="add-btn" data-id="${prod.id}" onclick="agregarCarrito(${prod.id}, this)">Añadir</button>
                 </div>`;
             });
         }
+
 
         // Filtros y categorías
         async function cargarCategorias() {
@@ -166,9 +167,16 @@
         }
 
         // Agregar al carrito
-        function agregarCarrito(id) {
+        function agregarCarrito(id, btnEl) {
+            let cantidadUI = 1;
+            const qtySpan = document.getElementById(`qty-${id}`);
+            if (qtySpan) {
+                const parsed = parseInt(qtySpan.textContent);
+                if (!isNaN(parsed) && parsed > 0) cantidadUI = parsed;
+            }
+
             const prod = productos.find(p => p.id === id);
-            const cantidadUI = parseInt(document.getElementById(`qty-${id}`).textContent);
+            if (!prod) return;
 
             const existe = carrito.find(p => p.id === id);
 
@@ -178,14 +186,24 @@
                 carrito.push({ ...prod, cantidad: cantidadUI });
             }
 
+            // Guardar
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
             showAddedPopup();
             updateCartCounter();
             shakeCartIcon();
             renderSideCart();
-        }
 
+            if (btnEl) {
+                const originalText = btnEl.innerHTML;
+                btnEl.innerHTML = "Producto añadido";
+                btnEl.classList.add("added");
+                setTimeout(() => {
+                    btnEl.classList.remove("added");
+                    btnEl.innerHTML = originalText;
+                }, 1200);
+            }
+        }
 
         // Contador
         function updateCartCounter() {
